@@ -7,4 +7,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :applications, param: :token, only: [ :create, :show, :update ] do
+  end
+  
+  get "applications", action: :index, controller: :applications
 end
