@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :applications, param: :token, only: [ :create, :show, :update ] do
+    resources :chats, param: :chat_number, only: [:index, :show, :update] do
+    end
   end
   
   get "applications", action: :index, controller: :applications
+  get "chats", action: :chats, controller: :chats
+
 end
