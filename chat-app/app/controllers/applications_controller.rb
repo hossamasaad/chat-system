@@ -12,7 +12,11 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/:token
   def show
-    render json: @application.as_json(only: [:token, :name, :chats_count])
+    if @application.nil?
+      render json: { error: 'Application not found' }, status: :not_found
+    else
+      render json: @application.as_json(only: [:token, :name, :chats_count])
+    end
   end
 
   # POST /applications/:token
