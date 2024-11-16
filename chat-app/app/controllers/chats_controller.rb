@@ -17,7 +17,7 @@ class ChatsController < ApplicationController
     }
   end
 
-  # GET /applications/:token/chats/:chat_number
+  # GET /applications/:token/chats/:number
   def show
     if @chat.nil?
       render json: { error_message: 'Chat not found' }, status: :not_found
@@ -29,7 +29,7 @@ class ChatsController < ApplicationController
     end
   end
 
-  # PUT /applications/:token/chats/:chat_number
+  # PUT /applications/:token/chats/:number
   def update
     if @chat.nil?
       render json: { error_message: 'Chat not found' }, status: :not_found
@@ -39,7 +39,7 @@ class ChatsController < ApplicationController
     application_id = params[:application_id] || @chat.application_id
     messages_count = params[:messages_count] || @chat.messages_count
     
-    UpdateChatJob.perform_later(params[:application_token], params[:chat_number], application_id, messages_count)
+    UpdateChatJob.perform_later(params[:application_token], params[:number], application_id, messages_count)
     render json: { message: "Update chat submitted. Chat will be updated shortly." }, status: :accepted
   end
   
@@ -47,7 +47,7 @@ class ChatsController < ApplicationController
   private
 
   def set_chat
-    @chat = Chat.joins(:application).find_by(applications: { token: params[:application_token] }, chat_number: params[:chat_number])
+    @chat = Chat.joins(:application).find_by(applications: { token: params[:application_token] }, chat_number: params[:number])
   end
 
 end
