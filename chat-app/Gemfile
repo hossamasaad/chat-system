@@ -20,6 +20,8 @@ gem 'dotenv-rails'
 # gem "redis", ">= 4.0.1"
 gem 'sidekiq'
 gem 'redis'
+gem 'elasticsearch', '~> 8.0'
+gem "elasticsearch-model"
 
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
