@@ -5,7 +5,6 @@ class ApplicationsController < ApplicationController
 
   # GET /applications
   def index
-    puts "HERE"
     @applications = Application.all
     render json: @applications
   end

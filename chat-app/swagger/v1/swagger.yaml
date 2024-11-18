@@ -1,0 +1,143 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/applications":
+    get:
+      summary: list all applications
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create application
+      responses:
+        '200':
+          description: successful
+  "/applications/{token}":
+    parameters:
+    - name: token
+      in: path
+      description: token
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get application by token
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update application
+      responses:
+        '200':
+          description: successful
+  "/chats":
+    get:
+      summary: list all chats
+      responses:
+        '200':
+          description: successful
+  "/applications/{application_token}/chats":
+    parameters:
+    - name: application_token
+      in: path
+      description: application_token
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list all chats in applications
+      responses:
+        '200':
+          description: successful
+  "/applications/{application_token}/chats/{number}":
+    parameters:
+    - name: application_token
+      in: path
+      description: application_token
+      required: true
+      schema:
+        type: string
+    - name: number
+      in: path
+      description: number
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show chat in application
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update chat in application
+      responses:
+        '202':
+          description: accepted
+  "/messages":
+    get:
+      summary: list all messages
+      responses:
+        '200':
+          description: successful
+  "/applications/{application_token}/chats/{chat_number}/messages?content={content}":
+    parameters:
+    - name: application_token
+      in: path
+      description: application_token
+      required: true
+      schema:
+        type: string
+    - name: chat_number
+      in: path
+      description: chat_number
+      required: true
+      schema:
+        type: string
+    - name: content
+      in: query
+      description: content
+      schema:
+        type: string
+    get:
+      summary: list all messages in chat in application
+      responses:
+        '200':
+          description: successful
+  "/applications/{application_token}/chats/{chat_number}/messages/{number}":
+    parameters:
+    - name: application_token
+      in: path
+      description: application_token
+      required: true
+      schema:
+        type: string
+    - name: chat_number
+      in: path
+      description: chat_number
+      required: true
+      schema:
+        type: string
+    - name: number
+      in: path
+      description: number
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show message in chat in application
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update message in chat in application
+      responses:
+        '202':
+          description: accepted
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
