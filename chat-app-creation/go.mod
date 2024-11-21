@@ -4,6 +4,7 @@ go 1.23.0
 
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
+	github.com/caitlinelfring/go-env-default v1.1.0 // indirects
 	github.com/bitly/go-simplejson v0.5.1 // indirect
 	github.com/bytedance/sonic v1.11.6 // indirect
 	github.com/bytedance/sonic/loader v0.1.1 // indirect

@@ -62,12 +62,14 @@ services:
       MYSQL_DATABASE_USERNAME: root
       MYSQL_DATABASE_PASSWORD: 123
       MYSQL_DATABASE_NAME: chat-app
-      MYSQL_DATABASE_HOST: localhost
+      MYSQL_DATABASE_HOST: mysql-db
       MYSQL_DATABASE_PORT: 3306
       RAILS_MAX_THREADS: 5
       RAILS_ENV: development
-      ELASTICSEARCH_HOST: "http://localhost:9200"
-  
+      ELASTICSEARCH_HOST: "http://elasticsearch:9200"
+      REDIS_HOST: "redis-db"
+      REDIS_PORT: 6379
+      REDIS_DB: 0  
 
   rails-sidekiq:
     build:
@@ -83,12 +85,14 @@ services:
       MYSQL_DATABASE_USERNAME: root
       MYSQL_DATABASE_PASSWORD: 123
       MYSQL_DATABASE_NAME: chat-app
-      MYSQL_DATABASE_HOST: localhost
+      MYSQL_DATABASE_HOST: mysql-db
       MYSQL_DATABASE_PORT: 3306
       RAILS_MAX_THREADS: 5
       RAILS_ENV: development
-      ELASTICSEARCH_HOST: "http://localhost:9200"
-  
+      ELASTICSEARCH_HOST: "http://elasticsearch:9200"
+      REDIS_HOST: "redis-db"
+      REDIS_PORT: 6379
+      REDIS_DB: 0
 
   go-creation-app:
     build:
@@ -101,7 +105,10 @@ services:
         condition: service_healthy
       redis-db:
         condition: service_healthy
-  
+    environment:
+      MYSQL_HOST: "mysql-db"
+      REDIS_HOST: "redis-db:6379"
+
 
   nginx-reverse-proxy:
     image: nginx:latest

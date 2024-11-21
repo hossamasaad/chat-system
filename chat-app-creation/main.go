@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	env "github.com/caitlinelfring/go-env-default"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jrallison/go-workers"
 	"github.com/redis/go-redis/v9"
@@ -20,10 +21,10 @@ var (
 	CREATE_MESSAGE_QUEUE        = "create_message"
 	UPDATE_CHATS_COUNT_QUEUE    = "update_chat_counters"
 	UPDATE_MESSAGE_COUNTS_QUEUE = "update_messages_counts"
-	REDIS_HOST                  = "localhost:6379"
+	REDIS_HOST                  = env.GetDefault("REDIS_HOST", "localhost:6379")
 	REDIS_DB                    = "0"
 	REDIS_POOL                  = "10"
-	MYSQL_HOST                  = "localhost"
+	MYSQL_HOST                  = env.GetDefault("MYSQL_HOST", "localhost")
 	MYSQL_PORT                  = 3306
 	MYSQL_DB                    = "chat-app"
 	MYSQL_USERNAME              = "root"
@@ -297,7 +298,6 @@ func getApplicationIdAndChatIdIfExists(token string, chatNumber int) (bool, int,
 
 func main() {
 	initializeSideKiqWorker()
-
 	workers.Process(CREATE_CHAT_QUEUE, createChatJob, 5)
 	workers.Process(CREATE_MESSAGE_QUEUE, createMessageJob, 5)
 	workers.Process(UPDATE_CHATS_COUNT_QUEUE, updateChatsCountJob, 5)
