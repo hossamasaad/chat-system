@@ -7,21 +7,21 @@
 
 ### Components
 
-- **NGINX Reverse Proxy:** NGINX is used as a reverse proxy to route client requests to two different backend services (Go Web Service, Rails Web Service) based on defined paths, enabling centralized request handling
+- **NGINX Reverse Proxy:** is used as a reverse proxy to route client requests to two different backend services (Go Web Service, Rails Web Service) based on defined paths, enabling centralized request handling
 
-- **Rails Web Service:** Rails web service serves as the primary application, handling overall application management, message, and chat operations, except for the creation of messages and chats, which are delegated to Go Web Server.
+- **Rails Web Service:** serves as the primary application, handling overall application management, message, and chat operations, except for the creation of messages and chats, which are delegated to Go Web Server.
 
-- **Go Web Service:** Go web service handles the creation of chats and messages by pushing these tasks as jobs to the Redis queue for asynchronous processing.
+- **Go Web Service:** handles the creation of chats and messages by pushing these tasks as jobs to the Redis queue for asynchronous processing.
 
-- **Redis:** Redis is used as a Redis Queue for managing chat and message creation jobs. Additionally, it stores chat_count for each application and message_count for each chat to track their respective metrics efficiently.
+- **Redis:** is used as a Redis Queue for managing chat and message creation jobs. Additionally, it stores chat_count for each application and message_count for each chat to track their respective metrics efficiently.
 
-- **Elasticsearch** Elasticsearch is integrated with the Rails service to enable efficient and scalable searching within message content.
+- **Elasticsearch** is integrated with the Rails service to enable efficient and scalable searching within message content.
 
-- **Sidekiq Worker** Sidekiq workers pull jobs from the Redis queue to handle updates to applications, chats, and messages, ensuring the changes are reliably persisted in the MySQL database.
+- **Sidekiq Worker** pull jobs from the Redis queue to handle updates to applications, chats, and messages, ensuring the changes are reliably persisted in the MySQL database.
 
-- **Go Worker** Go worker is responsible for processing chat and message creation jobs from the Redis queue and persisting the data in the MySQL database.
+- **Go Worker** is responsible for processing chat and message creation jobs from the Redis queue and persisting the data in the MySQL database.
 
-- **MySQL** MySQL is used as the primary database to store all persistent data, including applications, chats, messages.
+- **MySQL** is used as the primary database to store all persistent data, including applications, chats, messages.
 
 ## Database
 
