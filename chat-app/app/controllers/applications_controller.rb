@@ -6,7 +6,7 @@ class ApplicationsController < ApplicationController
   # GET /applications
   def index
     @applications = Application.all
-    render json: @applications
+    render json: @applications.as_json(only: [:token, :name, :chats_count])
   end
 
   # GET /applications/:token
