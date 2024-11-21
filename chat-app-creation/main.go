@@ -4,8 +4,8 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	env "github.com/caitlinelfring/go-env-default"
+	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jrallison/go-workers"
 	"github.com/redis/go-redis/v9"
@@ -89,8 +89,9 @@ func createChat(c *gin.Context) {
 
 	jobId := addJob(CREATE_CHAT_QUEUE, applicationId, chatNumber)
 	response := map[string]interface{}{
-		"message": "Chat creation request submitted",
-		"jobId":   jobId,
+		"chat_number": chatNumber,
+		"message":     "Chat creation request submitted",
+		"jobId":       jobId,
 	}
 	c.IndentedJSON(http.StatusCreated, response)
 }
@@ -140,8 +141,9 @@ func createMessage(c *gin.Context) {
 	messageContent := data["content"].(string)
 	jobId := addJob(CREATE_MESSAGE_QUEUE, chatId, messageNumber, messageContent)
 	response := map[string]interface{}{
-		"message": "Message creation request submitted",
-		"jobId":   jobId,
+		"message_number": messageNumber,
+		"message":        "Message creation request submitted",
+		"jobId":          jobId,
 	}
 	c.IndentedJSON(http.StatusCreated, response)
 }
