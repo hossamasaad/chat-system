@@ -69,7 +69,7 @@ class ApplicationsController < ApplicationController
   end
 
   def generate_unique_token
-    "#{SecureRandom.uuid}-#{SecureRandom.hex(8)}"
+    "#{SecureRandom.uuid}"
   end
 
 end
