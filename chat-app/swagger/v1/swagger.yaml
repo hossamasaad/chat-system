@@ -52,6 +52,11 @@ paths:
       responses:
         '200':
           description: successful
+    post:
+      summary: create new chat
+      responses:
+        '201':
+          description: accepted
   "/applications/{application_token}/chats/{number}":
     parameters:
     - name: application_token
@@ -82,7 +87,7 @@ paths:
       responses:
         '200':
           description: successful
-  "/applications/{application_token}/chats/{chat_number}/messages?content={content}":
+  "/applications/{application_token}/chats/{chat_number}/messages":
     parameters:
     - name: application_token
       in: path
@@ -99,6 +104,7 @@ paths:
     - name: content
       in: query
       description: content
+      required: false
       schema:
         type: string
     get:
@@ -106,6 +112,11 @@ paths:
       responses:
         '200':
           description: successful
+    post:
+      summary: add new message
+      responses:
+        '201':
+          description: accepted
   "/applications/{application_token}/chats/{chat_number}/messages/{number}":
     parameters:
     - name: application_token
@@ -140,4 +151,4 @@ servers:
 - url: https://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: localhost:8000
