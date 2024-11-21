@@ -54,7 +54,7 @@ services:
     ports:
       - "3000:3000"
     command: >
-      bash -c "./bin/rails db:create && ./bin/rails db:migrate && ./bin/rails server -b 0.0.0.0"
+      bash -c "./bin/rails db:create && ./bin/rails db:migrate && ./bin/rake elasticsearch:create_index && ./bin/rails server -b 0.0.0.0"
     depends_on:
       mysql-db:
         condition: service_healthy

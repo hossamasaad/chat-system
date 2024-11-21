@@ -13,7 +13,7 @@ class Message < ApplicationRecord
         ngram_filter: {
           type: "ngram",
           min_gram: 3,
-          max_gram: 3
+          max_gram: 4
         }
       },
       analyzer: {
@@ -29,6 +29,10 @@ class Message < ApplicationRecord
       indexes :message_content, type: :text, analyzer: "ngram_analyzer"
       indexes :chat_id, type: :integer
     end
+  end
+  
+  after_commit on: [:create, :update] do
+    __elasticsearch__.index_document
   end
 
   def as_indexed_json(options = nil)
