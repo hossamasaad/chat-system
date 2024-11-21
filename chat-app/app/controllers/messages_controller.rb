@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
   def index
     content = params[:content]
 
-    if content.present?
+    if content.nil? || content.empty?
       search_messages
       return
     end
