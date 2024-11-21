@@ -21,7 +21,7 @@ services:
   
 
   redis-db:
-    image: redis:latest
+    image: redis:7.4.1
     container_name: CHAT_APP_REDIS
     ports:
       - "6379:6379"
@@ -111,7 +111,7 @@ services:
 
 
   nginx-reverse-proxy:
-    image: nginx:latest
+    image: nginx:1.27.2
     container_name: CHAT_APP_NGINX_REVERSE_PROXY
     ports:
       - "8000:80"
