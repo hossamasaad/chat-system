@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	PORT                        = "8080"
+	PORT                        = "8090"
 	CREATE_CHAT_QUEUE           = "create_chat"
 	CREATE_MESSAGE_QUEUE        = "create_message"
 	UPDATE_CHATS_COUNT_QUEUE    = "update_chat_counters"
