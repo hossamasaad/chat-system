@@ -36,7 +36,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_15_213232) do
     t.text "message_content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chat_id", "message_number"], name: "index_messages_on_chat_id_and_message_number", unique: true
     t.index ["chat_id"], name: "index_messages_on_chat_id"
   end
 
